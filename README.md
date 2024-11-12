@@ -14,7 +14,7 @@ There are 1,500 observations with the following features:
 - `months_as_member`
 - `weight`
 - `days_before`
-- `day_of_week
+- `day_of_week`
 - `time`
 - `category`
 - `attended` (target)
