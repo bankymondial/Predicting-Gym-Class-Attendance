@@ -1,7 +1,7 @@
 # Predicting-Gym-Class-Attendance
 A dataset on class attendance for GoalZone, a fitness club chain in Canada, published on Kaggle 
 
-## Problem definition according to the information about the dataset
+## Problem definition
 GoalZone has fully booked classes that often have a low attendance rate.
 To increase the space available for members who are present in the gym, 
 the company would like to anticipate available spaces
