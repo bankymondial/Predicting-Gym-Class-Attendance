@@ -19,9 +19,10 @@ There are 1,500 observations with the following features:
 - `category`
 - `attended` (target)
 
-
 ## Requirements
 To use this dataset effectively, you will need:
 
 - Python: Recommended for data processing and analysis.
 - Libraries: pandas, numpy, and matplotlib for data manipulation and visualization, and scikit-learn for building predictive models.
+
+data = pd.read_csv("fitness_class_2212.csv")
