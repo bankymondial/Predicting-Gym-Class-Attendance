@@ -10,14 +10,14 @@ by predicting whether a member with a booking will attend class.
 
 ## The Dataset
 There are 1,500 observations with the following features:
-- `booking_id`
-- `months_as_member`
-- `weight`
-- `days_before`
-- `day_of_week`
-- `time`
-- `category`
-- `attended` (target)
+- `booking_id`: Nominal. The unique identifier of the booking.
+- `months_as_member`: Discrete. The number of months as this fitness club member, minimum 1 month.
+- `weight`: Continuous. The member's weight in kg, rounded to 2 decimal places.
+- `days_before`: Discrete. The number of days before the class the member registered.
+- `day_of_week`: Nominal. The day of the week of the class.
+- `time`: Ordinal. The time of day of the class. Either AM or PM.
+- `category`: Nominal. The category of the fitness class.
+- `attended` (target): Nominal. Whether the member attended the class (1) or not (0).
 
 ## Requirements
 To use this dataset effectively, you will need:
