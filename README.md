@@ -26,3 +26,5 @@ To use this dataset effectively, you will need:
 - Libraries: pandas, numpy, and matplotlib for data manipulation and visualization, and scikit-learn for building predictive models.
 
 data = pd.read_csv("fitness_class_2212.csv")
+
+- Prepared the data, performed EDA, analyzed important features
