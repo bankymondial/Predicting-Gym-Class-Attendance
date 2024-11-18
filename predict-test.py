@@ -20,7 +20,10 @@ member = {
 response = requests.post(url, json=member).json()
 print(response)
 
-if response['attended'] == True:
-    print('keep space for member %s' % member_id)
+probability = response['attended_probability']
+attended = response['attended']
+
+if attended:
+    print(f"Keep space for member {member_id}. Likelihood of attendance: {probability:.2f}.")
 else:
-    print('make space for another member')
+    print(f"Make space for another member. Likelihood of attendance for {member_id}: {probability:.2f}.")
