@@ -1,16 +1,13 @@
 import pickle
 
-from flask import Flask
-from flask import request
-from flask import jsonify
+from flask import Flask, request, jsonify
 
+app = Flask('attended')
 
 model_file = 'model_C=1.bin'
 
 with open(model_file, 'rb') as f_in:
     dv, model = pickle.load(f_in)
-
-app = Flask('attended')
 
 
 @app.route('/predict', methods=['POST'])
