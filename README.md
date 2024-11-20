@@ -100,13 +100,13 @@ If you need to restart the server, use:
 waitress-serve --listen=0.0.0.0:5454 predict:app
 
 ### Making Predictions with Docker
-After running the Docker container, make predictions using:
-curl:
+4. After running the Docker container, open a new terminal and run the following to make predictions:
+If using curl:
 curl -X POST http://localhost:5454/predict \
 -H "Content-Type: application/json" \
 -d '{"months_as_member": 12, "weight": 70, "category": "Cycling"}'
 
-predict-test.py: Run the script locally to test the deployed container:
+If using predict-test.py: Run the script locally to test the deployed container:
 python predict-test.py
 
 Optional: Explore the Docker Container
