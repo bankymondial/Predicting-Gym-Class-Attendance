@@ -86,8 +86,7 @@ docker build -t predicting-attendance .
 Run the container:
 docker run -it --rm -p 5454:5454 predicting-attendance
 
-### Making Predictions with Docker
-4. After running the Docker container, open a new terminal and run the following to make predictions:
+5. After running the Docker container, open a new terminal and run the following to make predictions:
 If using curl:
 curl -X POST http://localhost:5454/predict \
 -H "Content-Type: application/json" \
