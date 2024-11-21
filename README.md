@@ -113,12 +113,10 @@ Optional: Explore the Docker Container
 If you want to inspect the container, open a Bash terminal inside it:
 docker run -it --rm --entrypoint=bash predicting-attendance
 
-## API Usage
-The API is running and accessible at the following root endpoint to check its status:
-
-- URL: http://54.82.10.120:5454/
-
-
+## Public API URL
+Use the following API endpoint for predictions:
+- Base URL: `http://52.3.242.226:5454/`
+- Prediction Endpoint: `http://52.3.242.226:5454/predict`
 
 ## /predict Endpoint Instructions
 You can test the /predict endpoint using Postman or other API testing tools:
@@ -133,7 +131,7 @@ You can test the /predict endpoint using Postman or other API testing tools:
         "weight": 70,
         "category": "Cycling"
     }
-5. Send the request to http://54.82.10.120:5454/predict.
+5. Send the request to http://52.3.242.226:5454/predict.
 6. You will receive a JSON response similar to:
 
     {
