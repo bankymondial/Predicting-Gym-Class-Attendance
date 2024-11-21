@@ -1,5 +1,4 @@
 import pickle
-
 from flask import Flask, request, jsonify
 
 app = Flask('attended')
@@ -11,7 +10,10 @@ with open(model_file, 'rb') as f_in:
 
 @app.route('/', methods=['GET'])
 def home():
-    return "API is running. Use the /predict endpoint for predictions.", 200
+    return (
+        "API is running. Use the /predict endpoint for predictions. See README file for instructions.",
+        200
+    )
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -27,7 +29,6 @@ def predict():
     }
 
     return jsonify(result)
-
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5454)

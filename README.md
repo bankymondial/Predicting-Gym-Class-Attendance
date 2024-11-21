@@ -113,20 +113,35 @@ Optional: Explore the Docker Container
 If you want to inspect the container, open a Bash terminal inside it:
 docker run -it --rm --entrypoint=bash predicting-attendance
 
-## API Endpoints
-### POST /predict
+## API Usage
+The API is running and accessible at the following root endpoint to check its status:
+
+- URL: http://54.82.10.120:5454/
+
+
+
+## /predict Endpoint Instructions
+You can test the /predict endpoint using Postman or other API testing tools:
 - Description: Predicts whether a member will attend the class based on input features.
-- Input JSON:
-  {
-    "months_as_member": 12,
-    "weight": 70,
-    "category": "Cycling"
-}
-- Response JSON:
-  {
-    "attended_probability": 0.85,
-    "attended": true
-}
+1. Open Postman and create a new request.
+2. Set the request type to POST.
+3. In the request body, choose the raw option and set the format to JSON.
+4. Add the following JSON payload in the body:
+
+    {
+        "months_as_member": 12,
+        "weight": 70,
+        "category": "Cycling"
+    }
+5. Send the request to http://54.82.10.120:5454/predict.
+6. You will receive a JSON response similar to:
+
+    {
+        "attended_probability": 0.85,
+        "attended": true
+    }
+
+Note: Feel free to edit the features and values in the JSON payload to get different predictions.
 
 ## Troubleshooting
 Address Already in Use:
