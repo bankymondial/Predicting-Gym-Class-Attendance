@@ -66,7 +66,7 @@ Run the script to test predictions:
 python predict-test.py
 
 ## Using Docker
-1. Write the Dockerfile
+1. Write the Dockerfile 
 Ensure the Dockerfile contains the following content:
 FROM python:3.12.1-slim
 RUN pip install pipenv
