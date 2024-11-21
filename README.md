@@ -37,7 +37,7 @@ Ensure you have the following installed:
 
 ### Setup and Installation
 ##### 1. Clone the Repository
-    git clone <repository-url>
+    git clone [<repository-url>](https://github.com/bankymondial/Predicting-Gym-Class-Attendance.git)
     cd Predicting-Gym-Class-Attendance
 ##### 2. Install Dependencies
     pipenv shell
