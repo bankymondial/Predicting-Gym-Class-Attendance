@@ -15,6 +15,8 @@ The dataset contains 1,500 observations with the following features:
 - `time`: (Ordinal) Time of day of the class (`AM` or `PM`).
 - `category`: Nominal. (Nominal) Category of the fitness class.
 - `attended` (target): (Nominal) Whether the member attended the class (`1` for Yes, `0` for No).
+  
+____________________________________________________________________________________________________________________________________________________
 
 ### Repository Overview
 This repository contains:
@@ -23,6 +25,9 @@ This repository contains:
 2. Prediction Scripts: For making predictions.
 3. Deployment Scripts: To deploy the model as a web service using Flask, Waitress, and Docker.
 4. API Documentation: Instructions to use the prediction API locally or via Docker/ECS.
+
+____________________________________________________________________________________________________________________________________________________
+
 
 ### Getting Started
 Follow these steps to set up, train, and deploy the model on your local machine.
@@ -33,6 +38,8 @@ Ensure you have the following installed:
 - Pipenv: For dependency management
 - Docker: To containerize and deploy the application
 - curl: For API testing
+
+____________________________________________________________________________________________________________________________________________________
 
 
 ### Setup and Installation
@@ -46,6 +53,8 @@ Ensure you have the following installed:
    Train the model by running:
    python train.py
 _This generates model_C=1.bin, containing the trained model and the DictVectorizer._
+
+____________________________________________________________________________________________________________________________________________________
 
 
 ### Running Predictions Locally
@@ -62,6 +71,8 @@ _The API will start on port 5454._
 ###### - Using the Python Script:
     Run the script to test predictions:
     python predict-test.py
+
+____________________________________________________________________________________________________________________________________________________
 
 
 ### Using Docker
@@ -87,10 +98,14 @@ _The API will start on port 5454._
 ###### - Using predict-test.py:
     python predict-test.py
 
+____________________________________________________________________________________________________________________________________________________
+
 
 ### Public API URL
 ##### Base URL: `http://52.3.242.226:5454/`
 ##### Prediction Endpoint: `http://52.3.242.226:5454/predict`
+
+____________________________________________________________________________________________________________________________________________________
 
 
 ### API Testing with Postman
@@ -112,6 +127,9 @@ _Expected Response_:
             "attended": true
         }
 
+____________________________________________________________________________________________________________________________________________________
+
+
 ### Troubleshooting
 ##### Address Already in Use:
 1. Identify the process using port 5454: lsof -i :5454
@@ -122,8 +140,5 @@ waitress-serve --listen=0.0.0.0:5454 predict:app
 
 ##### Dependency Issues:
 - Verify Python, Pipenv, and Docker versions match the prerequisites.
-
-
-
 
 
