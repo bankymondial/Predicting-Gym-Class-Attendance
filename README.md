@@ -1,147 +1,129 @@
-# Predicting Gym Class Attendance
-Predicting gym class attendance with a dataset on class attendance for GoalZone, 
-a fitness club chain in Canada, published on Kaggle. 
+## Predicting Gym Class Attendance
 
-## Problem definition
-GoalZone has fully booked classes that often have a low attendance rate.
-To increase the space available for members who are present in the gym, 
-the company would like to anticipate available spaces
-by predicting whether a member with a booking will attend class.
+This project aims to predict gym class attendance using a dataset published on Kaggle by GoalZone, a fitness club chain in Canada. The predictions help identify available spaces in fully booked classes by anticipating whether a member with a booking will attend.
 
-## The Dataset
-There are 1,500 observations with the following features:
-- `booking_id`: Nominal. The unique identifier of the booking.
-- `months_as_member`: Discrete. The number of months as this fitness club member, minimum 1 month.
-- `weight`: Continuous. The member's weight in kg, rounded to 2 decimal places.
-- `days_before`: Discrete. The number of days before the class the member registered.
-- `day_of_week`: Nominal. The day of the week of the class.
-- `time`: Ordinal. The time of day of the class. Either AM or PM.
-- `category`: Nominal. The category of the fitness class.
-- `attended` (target): Nominal. Whether the member attended the class (1) or not (0).
+### Problem Definition
+GoalZone faces challenges with low attendance rates in fully booked fitness classes. I developed a machine learning model to predict attendance to address this, enabling better space utilization.
 
-## This repository contains a machine learning project for predicting gym class attendance using a trained model. The project includes scripts to train the model, make predictions, and deploy the model as a web service using Flask, Waitress, and Docker.
+### Dataset
+The dataset contains 1,500 observations with the following features:
+- `booking_id`: Nominal. Unique identifier of the booking.
+- `months_as_member`: (Discrete) Number of months as a fitness club member (minimum 1 month).
+- `weight`:  (Continuous) Member's weight in kg, rounded to 2 decimal places.
+- `days_before`: (Discrete) Number of days before the class the member registered.
+- `day_of_week`: (Nominal) Day of the week of the class.
+- `time`: (Ordinal) Time of day of the class (`AM` or `PM`).
+- `category`: Nominal. (Nominal) Category of the fitness class.
+- `attended` (target): (Nominal) Whether the member attended the class (`1` for Yes, `0` for No).
 
-## Getting Started
-Follow these instructions to run predictions on your computer.
+### Repository Overview
+This repository contains:
 
-## Dependencies
+1. Training Scripts: For building the machine learning model.
+2. Prediction Scripts: For making predictions.
+3. Deployment Scripts: To deploy the model as a web service using Flask, Waitress, and Docker.
+4. API Documentation: Instructions to use the prediction API locally or via Docker/ECS.
+
+### Getting Started
+Follow these steps to set up, train, and deploy the model on your local machine.
+
+#### Prerequisites
 Ensure you have the following installed:
+- Python: Version >= 3.12.1
+- Pipenv: For dependency management
+- Docker: To containerize and deploy the application
+- curl: For API testing
 
-Python (>=3.12.1)
-Pipenv
-Docker
-curl (for API testing)
 
-## Setup and Installation
-1. Clone the Repository
-Clone the repository to your local machine:
-git clone <repository-url>
-cd Predicting-Gym-Class-Attendance
+### Setup and Installation
+##### 1. Clone the Repository
+    git clone <repository-url>
+    cd Predicting-Gym-Class-Attendance
+##### 2. Install Dependencies
+    pipenv shell
+    pipenv install
+##### 3. Train the Model
+   Train the model by running:
+   python train.py
+_This generates model_C=1.bin, containing the trained model and the DictVectorizer._
 
-2. Install Dependencies
-Run the following commands to set up a virtual environment and install dependencies:
-pipenv shell
-pipenv install
 
-3. Train the Model
-Train the model by running:
-python train.py
-_This will generate a file named model_C=1.bin, which contains the trained model and DictVectorizer._
+### Running Predictions Locally
+##### 1. Start the Waitress Server
+    Run the Flask app with Waitress:
+    waitress-serve --listen=0.0.0.0:5454 predict:app
+_The API will start on port 5454._
 
-## Running the Prediction Locally
-1. Start the Waitress Server
-Run the Flask app using Waitress:
+##### 2. Make Predictions
+###### - Using curl:
+    curl -X POST http://localhost:5454/predict \
+    -H "Content-Type: application/json" \
+    -d '{"months_as_member": 12, "weight": 70, "category": "Cycling"}'
+###### - Using the Python Script:
+    Run the script to test predictions:
+    python predict-test.py
+
+
+### Using Docker
+##### 1. Dockerfile
+    Ensure the `Dockerfile` contains the following content:
+    FROM python:3.12.1-slim
+    RUN pip install pipenv
+    WORKDIR /app
+    COPY ["Pipfile", "Pipfile.lock", "./"]
+    RUN pipenv install --system --deploy
+    COPY ["predict.py", "predict-test.py", "model_C=1.bin", "./"]
+    EXPOSE 5454
+    ENTRYPOINT ["waitress-serve", "--listen=0.0.0.0:5454", "predict:app"]
+##### 2. Build the Docker Image
+    docker build -t predicting-attendance .
+##### 3. Run the Docker Container
+    docker run -it --rm -p 5454:5454 predicting-attendance
+##### 4. Test Predictions
+###### - Using curl:
+    curl -X POST http://localhost:5454/predict \
+    -H "Content-Type: application/json" \
+    -d '{"months_as_member": 12, "weight": 70, "category": "Cycling"}'
+###### - Using predict-test.py:
+    python predict-test.py
+
+
+### Public API URL
+##### Base URL: `http://52.3.242.226:5454/`
+##### Prediction Endpoint: `http://52.3.242.226:5454/predict`
+
+
+### API Testing with Postman
+##### 1. Use the Root Endpoint:
+Visit `http://52.3.242.226:5454/` to confirm the API is running.
+_Expected Response_:
+`"API is running. Use the /predict endpoint for predictions. See README file for instructions."`
+##### 2. Use the /predict Endpoint:
+    Request Type: POST
+    Body (JSON):
+        {
+            "months_as_member": 12,
+            "weight": 70,
+            "category": "Cycling"
+        }
+    Response Example:
+        {
+            "attended_probability": 0.85,
+            "attended": true
+        }
+
+### Troubleshooting
+##### Address Already in Use:
+1. Identify the process using port 5454: lsof -i :5454
+2. Kill the process using the PID: kill -9 <PID>
+
+##### Restarting the Waitress Server:
 waitress-serve --listen=0.0.0.0:5454 predict:app
-_This will start the API on port 5454._
 
-2. Make a Prediction
-You can make a prediction using either curl or the predict-test.py script:
-Using curl:
-curl -X POST http://localhost:5454/predict \
--H "Content-Type: application/json" \
--d '{"months_as_member": 12, "weight": 70, "category": "Cycling"}'
+##### Dependency Issues:
+- Verify Python, Pipenv, and Docker versions match the prerequisites.
 
-Using predict-test.py
-Run the script to test predictions:
-python predict-test.py
 
-## Using Docker
-1. Write the Dockerfile 
-Ensure the Dockerfile contains the following content:
-FROM python:3.12.1-slim
-RUN pip install pipenv
-WORKDIR /app
-COPY ["Pipfile", "Pipfile.lock", "./"]
-RUN pipenv install --system --deploy
-COPY ["predict.py", "predict-test.py", "model_C=1.bin", "./"]
-EXPOSE 5454
-ENTRYPOINT ["waitress-serve", "--listen=0.0.0.0:5454", "predict:app"]
-_Use gunicorn instead of waitress on Linux._
 
-2. Build the Docker Image
-Build the Docker image with the following command:
-docker build -t predicting-attendance .
 
-3. Run the Docker Container
-Run the container:
-docker run -it --rm -p 5454:5454 predicting-attendance
 
-5. After running the Docker container, open a new terminal and run the following to make predictions:
-If using curl:
-curl -X POST http://localhost:5454/predict \
--H "Content-Type: application/json" \
--d '{"months_as_member": 12, "weight": 70, "category": "Cycling"}'
-
-If using predict-test.py: Run the script locally to test the deployed container:
-python predict-test.py
-
-Optional: Explore the Docker Container
-If you want to inspect the container, open a Bash terminal inside it:
-docker run -it --rm --entrypoint=bash predicting-attendance
-
-#### Checking for Port Usage
-If port 5454 is already in use, identify the process using it:
-lsof -i :5454
-
-#### Stopping the Process
-Kill the process using the identified PID:
-kill -9 <PID>
-
-#### Restarting the Waitress Server
-If you need to restart the server, use:
-waitress-serve --listen=0.0.0.0:5454 predict:app
-
-## Public API URL
-Use the following API endpoint for predictions:
-- Base URL: `http://52.3.242.226:5454/`
-- Prediction Endpoint: `http://52.3.242.226:5454/predict`
-
-## /predict Endpoint Instructions
-You can test the /predict endpoint using Postman or other API testing tools:
-- Description: Predicts whether a member will attend the class based on input features.
-1. Open Postman and create a new request.
-2. Set the request type to POST.
-3. In the request body, choose the raw option and set the format to JSON.
-4. Add the following JSON payload in the body:
-
-    {
-        "months_as_member": 12,
-        "weight": 70,
-        "category": "Cycling"
-    }
-5. Send the request to http://52.3.242.226:5454/predict.
-6. You will receive a JSON response similar to:
-
-    {
-        "attended_probability": 0.85,
-        "attended": true
-    }
-
-Note: Feel free to edit the features and values in the JSON payload to get different predictions.
-
-## Troubleshooting
-Address Already in Use:
-Use lsof and kill commands as described above to free up port 5454.
-Dependency Issues:
-
-Ensure you’re using the correct Python, Pipenv, and Docker versions.
