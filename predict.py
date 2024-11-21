@@ -9,6 +9,9 @@ model_file = 'model_C=1.bin'
 with open(model_file, 'rb') as f_in:
     dv, model = pickle.load(f_in)
 
+@app.route('/', methods=['GET'])
+def home():
+    return "API is running. Use the /predict endpoint for predictions.", 200
 
 @app.route('/predict', methods=['POST'])
 def predict():
