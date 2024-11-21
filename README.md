@@ -86,7 +86,7 @@ docker build -t predicting-attendance .
 Run the container:
 docker run -it --rm -p 5454:5454 predicting-attendance
 
-## Stopping and Restarting the Port
+### Stopping and Restarting the Port
 ### Checking for Port Usage
 If port 5454 is already in use, identify the process using it:
 lsof -i :5454
