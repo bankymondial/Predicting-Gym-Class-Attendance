@@ -86,19 +86,6 @@ docker build -t predicting-attendance .
 Run the container:
 docker run -it --rm -p 5454:5454 predicting-attendance
 
-### Stopping and Restarting the Port
-### Checking for Port Usage
-If port 5454 is already in use, identify the process using it:
-lsof -i :5454
-
-### Stopping the Process
-Kill the process using the identified PID:
-kill -9 <PID>
-
-### Restarting the Waitress Server
-If you need to restart the server, use:
-waitress-serve --listen=0.0.0.0:5454 predict:app
-
 ### Making Predictions with Docker
 4. After running the Docker container, open a new terminal and run the following to make predictions:
 If using curl:
@@ -112,6 +99,18 @@ python predict-test.py
 Optional: Explore the Docker Container
 If you want to inspect the container, open a Bash terminal inside it:
 docker run -it --rm --entrypoint=bash predicting-attendance
+
+#### Checking for Port Usage
+If port 5454 is already in use, identify the process using it:
+lsof -i :5454
+
+#### Stopping the Process
+Kill the process using the identified PID:
+kill -9 <PID>
+
+#### Restarting the Waitress Server
+If you need to restart the server, use:
+waitress-serve --listen=0.0.0.0:5454 predict:app
 
 ## Public API URL
 Use the following API endpoint for predictions:
