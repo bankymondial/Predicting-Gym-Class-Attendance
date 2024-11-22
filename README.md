@@ -81,6 +81,9 @@ _The API will be accessible at `http://localhost:5454/`._
     -d '{"months_as_member": 12, "weight": 70, "category": "Cycling"}'
 ###### - Using the Python script:
     python predict-test.py
+    
+____________________________________________________________________________________________________________________________________________________
+
 
 ### 4. Running the Prediction with Docker
 ##### 4.1 Build the Docker Image
@@ -151,6 +154,7 @@ waitress-serve --listen=0.0.0.0:5454 predict:app
     pipenv install
 
 ____________________________________________________________________________________________________________________________________________________
+
 
 ###### Why This Project Matters
 By predicting gym class attendance, GoalZone can:
