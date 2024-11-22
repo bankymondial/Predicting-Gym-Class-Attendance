@@ -26,7 +26,7 @@ This repository contains:
 3. Deployment Scripts: To deploy the model as a web service using Flask, Waitress, and Docker. These are `Pipfile`, `Pipfile.lock` and `Dockerfile`. 
 4. API Documentation: Instructions to use the prediction API locally or via Docker/ECS. This can be found in the README file.
 5. This repository also contains the dataset, `fitness_class_2212.csv` which can also be found on [Kaggle](https://www.kaggle.com/datasets/ddosad/datacamps-data-science-associate-certification).
-6. Deployment to the cloud: The URL to the deployed service is http://52.3.242.226:5454/predict`.
+6. Deployment to the cloud: The URL to the deployed service is `http://52.3.242.226:5454/predict`.
 
 
 ____________________________________________________________________________________________________________________________________________________
