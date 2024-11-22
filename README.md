@@ -25,6 +25,8 @@ This repository contains:
 2. Prediction Scripts: For making predictions. These are `predict-test.py`, `predict.py` and `model_C=1.bin`.
 3. Deployment Scripts: To deploy the model as a web service using Flask, Waitress, and Docker. These are `Pipfile`, `Pipfile.lock` and `Dockerfile`.
 4. API Documentation: Instructions to use the prediction API locally or via Docker/ECS. This can be found in the README file.
+5. This repository also contains the modelling data, `fitness_class_2212.csv` whose can be found on <url name="kaggle">https://www.kaggle.com/datasets/ddosad/datacamps-data-science-associate-certification</url>
+
 
 ____________________________________________________________________________________________________________________________________________________
 
