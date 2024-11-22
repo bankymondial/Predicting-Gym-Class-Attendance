@@ -21,10 +21,10 @@ ________________________________________________________________________________
 ### Repository Overview
 This repository contains:
 
-1. Training Scripts: For building the machine learning model.
-2. Prediction Scripts: For making predictions.
-3. Deployment Scripts: To deploy the model as a web service using Flask, Waitress, and Docker.
-4. API Documentation: Instructions to use the prediction API locally or via Docker/ECS.
+1. Training Scripts: For building the machine learning model. These are `notebook.ipynb`, `Model training and selection.ipynb` and `train.py`. 
+2. Prediction Scripts: For making predictions. These are `predict-test.py`, `predict.py` and `model_C=1.bin`.
+3. Deployment Scripts: To deploy the model as a web service using Flask, Waitress, and Docker. These are `Pipfile`, `Pipfile.lock` and `Dockerfile`.
+4. API Documentation: Instructions to use the prediction API locally or via Docker/ECS. This can be found in the README file.
 
 ____________________________________________________________________________________________________________________________________________________
 
