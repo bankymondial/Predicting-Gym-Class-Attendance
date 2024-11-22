@@ -50,8 +50,7 @@ ________________________________________________________________________________
     git clone [<repository-url>](https://github.com/bankymondial/Predicting-Gym-Class-Attendance.git)
     cd Predicting-Gym-Class-Attendance
 ##### 2. Install Dependencies
-    pipenv shell
-    pipenv install
+    pipenv install    
 ##### 3. Train the Model
    Train the model by running:
    python train.py
@@ -60,26 +59,12 @@ _This generates model_C=1.bin, containing the trained model and the DictVectoriz
 ____________________________________________________________________________________________________________________________________________________
 
 
-### Running Predictions Locally
+### Docker for running the service
 ##### 1. Start the Waitress Server
     Run the Flask app with Waitress:
     waitress-serve --listen=0.0.0.0:5454 predict:app
 _The API will start on port 5454._
-
-##### 2. Make Predictions
-###### - Using curl:
-    curl -X POST http://localhost:5454/predict \
-    -H "Content-Type: application/json" \
-    -d '{"months_as_member": 12, "weight": 70, "category": "Cycling"}'
-###### - Using the Python Script:
-    Run the script to test predictions:
-    python predict-test.py
-
-____________________________________________________________________________________________________________________________________________________
-
-
-### Using Docker
-##### 1. Dockerfile
+##### 2. Dockerfile
     Ensure the `Dockerfile` contains the following content:
     FROM python:3.12.1-slim
     RUN pip install pipenv
@@ -89,11 +74,11 @@ ________________________________________________________________________________
     COPY ["predict.py", "predict-test.py", "model_C=1.bin", "./"]
     EXPOSE 5454
     ENTRYPOINT ["waitress-serve", "--listen=0.0.0.0:5454", "predict:app"]
-##### 2. Build the Docker Image
+##### 3. Build the Docker Image
     docker build -t predicting-attendance .
-##### 3. Run the Docker Container
+##### 4. Run the Docker Container
     docker run -it --rm -p 5454:5454 predicting-attendance
-##### 4. Test Predictions
+##### 5. Test Predictions
 ###### - Using curl:
     curl -X POST http://localhost:5454/predict \
     -H "Content-Type: application/json" \
