@@ -5,18 +5,8 @@ This project aims to predict gym class attendance using a dataset published on K
 ### Problem Definition
 GoalZone faces challenges with low attendance rates in fully booked fitness classes. I developed a machine learning model to predict attendance to address this, enabling better space utilization.
 
-### Dataset
-The dataset contains 1,500 observations with the following features:
-- `booking_id`: Nominal. Unique identifier of the booking.
-- `months_as_member`: (Discrete) Number of months as a fitness club member (minimum 1 month).
-- `weight`:  (Continuous) Member's weight in kg, rounded to 2 decimal places.
-- `days_before`: (Discrete) Number of days before the class the member registered.
-- `day_of_week`: (Nominal) Day of the week of the class.
-- `time`: (Ordinal) Time of day of the class (`AM` or `PM`).
-- `category`: Nominal. (Nominal) Category of the fitness class.
-- `attended` (target): (Nominal) Whether the member attended the class (`1` for Yes, `0` for No).
-  
 ____________________________________________________________________________________________________________________________________________________
+
 
 ### Repository Overview
 This repository contains:
@@ -28,7 +18,20 @@ This repository contains:
 5. This repository also contains the dataset, `fitness_class_2212.csv` which can also be found on [Kaggle](https://www.kaggle.com/datasets/ddosad/datacamps-data-science-associate-certification).
 6. Deployment to the cloud: The URL to the deployed service is `http://52.3.242.226:5454/predict`.
 
+____________________________________________________________________________________________________________________________________________________
 
+
+### Dataset
+The dataset contains 1,500 observations with the following features:
+- `booking_id`: Nominal. Unique identifier of the booking.
+- `months_as_member`: (Discrete) Number of months as a fitness club member (minimum 1 month).
+- `weight`:  (Continuous) Member's weight in kg, rounded to 2 decimal places.
+- `days_before`: (Discrete) Number of days before the class the member registered.
+- `day_of_week`: (Nominal) Day of the week of the class.
+- `time`: (Ordinal) Time of day of the class (`AM` or `PM`).
+- `category`: Nominal. (Nominal) Category of the fitness class.
+- `attended` (target): (Nominal) Whether the member attended the class (`1` for Yes, `0` for No).
+  
 ____________________________________________________________________________________________________________________________________________________
 
 
@@ -63,6 +66,7 @@ _This generates `model_C=1.bin`, which contains the trained model and the DictVe
 
 ____________________________________________________________________________________________________________________________________________________
 
+
 ### 3. Running the Prediction Locally
 ##### 3.1 Start the Waitress Server
 Run the Flask app with Waitress:
@@ -93,7 +97,7 @@ Test predictions using the same `curl` command or `predict-test.py` as described
 ____________________________________________________________________________________________________________________________________________________
 
 
-### 5. Public API URL
+### 5. Accessing the Deployed Model via API
 The model is deployed on AWS ECS and can be accessed via the public API. To test predictions:
 ##### 5.1 Confirm the API is Running
 Visit the root endpoint to verify:
@@ -117,7 +121,7 @@ To make predictions, send a `POST` request to the following URL:
             "attended": true
         }
 
-##### Tools for Making POST Requests
+##### A Tool for Making POST Requests
 ###### - Postman: A user-friendly interface for sending POST requests and viewing responses.
           - Instructions:
               1. Create a new request in Postman.
@@ -126,17 +130,12 @@ To make predictions, send a `POST` request to the following URL:
               4. In the request body, select `raw` and set the format to JSON.
               5. Copy and paste the JSON payload (example provided above) into the body.
               6. Send the request and view the response.
-###### - curl: A command-line tool for sending HTTP requests. Example:
-    curl -X POST http://52.3.242.226:5454/predict \
-    -H "Content-Type: application/json" \
-    -d '{"months_as_member": 12, "weight": 70, "category": "Cycling"}'
-
 Feel free to modify the values of the features (e.g., months_as_member, weight, or category) in the JSON payload to test different scenarios and predictions.
 
 ____________________________________________________________________________________________________________________________________________________
 
 
-### 6. Troubleshooting
+### 6. Common Issues and Resolutions.
 ##### Address Already in Use:
 If port 5454 is already in use:
 1. Identify the process using port 5454: lsof -i :5454
@@ -153,3 +152,8 @@ waitress-serve --listen=0.0.0.0:5454 predict:app
 
 ____________________________________________________________________________________________________________________________________________________
 
+###### Why This Project Matters
+By predicting gym class attendance, GoalZone can:
+- Reduce overcrowding in popular classes.
+- Allocate gym space more efficiently.
+- Enhance member experience by ensuring space availability.
