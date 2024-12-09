@@ -161,3 +161,23 @@ By predicting gym class attendance, GoalZone can:
 - Reduce overcrowding in popular classes.
 - Allocate gym space more efficiently.
 - Enhance member experience by ensuring space availability.
+
+____________________________________________________________________________________________________________________________________________________
+
+
+###### Acknowledgements
+Special thanks to the Datatalks Club for offering a free and practical course on Machine Learning. Deep gratitude to Alexey and the team for their hard work and dedication.
+
+____________________________________________________________________________________________________________________________________________________
+
+
+###### License
+This project is distributed under the MIT License. Refer to the [LICENSE](https://opensource.org/license/mit) file for more information.
+
+____________________________________________________________________________________________________________________________________________________
+
+
+###### Contact
+- LinkedIn: [Ọláídé Bánkọ́lé](www.linkedin.com/in/obanky) 
+
+
