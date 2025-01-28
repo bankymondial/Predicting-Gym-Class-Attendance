@@ -23,13 +23,13 @@ ________________________________________________________________________________
 
 ### Dataset
 The dataset contains 1,500 observations with the following features:
-- `booking_id`: Nominal. Unique identifier of the booking.
+- `booking_id`: (Nominal) Unique identifier of the booking.
 - `months_as_member`: (Discrete) Number of months as a fitness club member (minimum 1 month).
 - `weight`:  (Continuous) Member's weight in kg, rounded to 2 decimal places.
 - `days_before`: (Discrete) Number of days before the class the member registered.
 - `day_of_week`: (Nominal) Day of the week of the class.
-- `time`: (Ordinal) Time of day of the class (`AM` or `PM`).
-- `category`: Nominal. (Nominal) Category of the fitness class.
+- `time`: (Nominal) Time of day of the class (`AM` or `PM`).
+- `category`: (Nominal) Category of the fitness class.
 - `attended` (target): (Nominal) Whether the member attended the class (`1` for Yes, `0` for No).
   
 ____________________________________________________________________________________________________________________________________________________
