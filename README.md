@@ -56,11 +56,11 @@ Clone the project to your local machine and navigate into the directory:
     
 ##### 2.2 Install Dependencies
 Set up a virtual environment and install the necessary Python packages:
-    pipenv install
+    `pipenv install`
     
 ##### 2.3 Train the Model (optional)
 To retrain the model, run the training script:
-   python train.py
+   `python train.py`
    
 _This generates `model_C=1.bin`, which contains the trained model and the DictVectorizer._
 
