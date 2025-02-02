@@ -88,11 +88,11 @@ ________________________________________________________________________________
 ### 4. Running the Prediction with Docker
 ##### 4.1 Build the Docker Image
 Build the Docker container for the project:
-docker build -t predicting-attendance .
+`docker build -t predicting-attendance .`
 
 ##### 4.2 Run the Docker Container
 Run the container to start the service:
-docker run -it --rm -p 5454:5454 predicting-attendance
+`docker run -it --rm -p 5454:5454 predicting-attendance`
 
 ##### 4.3 Test Predictions
 Test predictions using the same `curl` command or `predict-test.py` as described above. Ensure the service is running on `http://localhost:5454/`.
